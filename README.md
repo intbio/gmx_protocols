@@ -1,6 +1,21 @@
 # gmx_protocols
 Protocols for running MD simulations in Gromacs
 
+## Notes on simulation parameters
+### AMBER ff14SB paper
+https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4821407/pdf/nihms772276.pdf
+
+
+
+### CHARMM36 paper
+https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3549273/pdf/nihms395902.pdf
+
+Electrostatic interactions were computed with PME using a real-space cut-off of 12 Å and a 1 Å grid spacing and Lennard-Jones interactions were switched off smoothly between 10 and 12 Å. A Langevin thermostat with a friction coefficient of 1 ps−1 was used, with a time step of 2 fs to integrate the equations of motion. 
+
+The equations of motion were integrated with a 2 fs time step while SHAKE was used to constrain covalent bonds involving non-water hydrogen bonds and SETTLE33 was used to maintain rigid water geometries. 
+
+Pressure was regulated by a Parinello-Rahman barostat52 with a coupling time of 2.5 ps
+
 ## Notes on equilibration protocols
 ### AMBER ff14SB paper
 https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4821407/pdf/nihms772276.pdf
