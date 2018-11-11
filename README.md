@@ -5,7 +5,10 @@ Protocols for running MD simulations in Gromacs
 ### AMBER ff14SB paper
 https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4821407/pdf/nihms772276.pdf
 
+equilibration was performed with a weak- coupling (Berendsen) thermostat33 and barostat targeted to 1 bar with isotropic position scaling as follows.
 
+Finally, the system was simulated unrestrained with pressure and temperature time constants of 1 ps for 500 ps with a 2 fs time step, removing center-of-mass translation and rotation every picosecond.
+SHAKE34 was performed on all bonds including hydrogen with the AMBER default tolerance of 10−5 Å for NVT and 10−6 Å for NVE. Non-bonded interactions were calculated directly up to 8 Å. Beyond 8 Å, electrostatic interactions were treated with cubic spline switching and the particle-mesh Ewald approximation35 in explicit solvent, with direct sum tolerances of 10−5 for NVT or 10−6 for NVE. A continuum model correction for energy and pressure was applied to long-range van der Waals interactions. The production timesteps were 2 fs for NVT and 1 fs for NVE.
 
 ### CHARMM36 paper
 https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3549273/pdf/nihms395902.pdf
