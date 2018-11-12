@@ -27,7 +27,7 @@ emstep                   = 0.01
 
 ; OUTPUT CONTROL OPTIONS
 ; Output frequency for coords (x), velocities (v) and forces (f)
-nstxout                  = 0
+nstxout                  = 1000
 nstvout                  = 0
 nstfout                  = 0
 ; Output frequency for energies to log file and energy file
@@ -36,7 +36,7 @@ nstcalcenergy            = 100 ; why less???
 nstenergy                = 1000
 
 ; Output frequency and precision for .xtc file
-nstxout-compressed       = 100
+nstxout-compressed       = 100 ; minimization does not output xtc anyway
 compressed-x-precision   = 1000
 
 ; This selects the subset of atoms for the compressed
