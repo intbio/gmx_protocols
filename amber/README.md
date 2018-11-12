@@ -50,15 +50,13 @@ Protocol may look as an overkill.
 I'd probably go with the  modified JMB protocol:
 - 10 000 minimization steps with 500 kJ/mol/A2 restraints on protein heavy atoms.
 - Four rounds of 200 ps simulations with elastic constraints on heavy atoms which are gradually relaxed as follows: 100->10->1->0.1 kcal/mol/A2. Due to kJ, we go with 500->50->5->0.5 kJ/mol/A2
+- 200 p unrestrained
 
 ## MDP-files
 
-### minimization.mdp
-- 10 000 minimization steps with all crystal atoms fixed (prtotein, DNA, crystal waters, etc).
-- 
-
-### production_npt.mdp
-
+- 1_minim.mdp
+- 2_equil.mdp
+- ...
 
 
 
