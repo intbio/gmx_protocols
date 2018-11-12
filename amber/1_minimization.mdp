@@ -16,8 +16,7 @@ simulation-part          = 1 ; Part index is updated automatically on checkpoint
 comm-mode                = Linear ; mode for center of mass motion removal
 
 nstcomm                  = 100 ; number of steps for center of mass motion removal
-comm-grps                =  Protein ; group(s) for center of mass motion removal default is the whole system
-; We add Prtoein so it will not fly away. We cannot set system simultaneously, is it on?
+comm-grps                =  System ; group(s) for center of mass motion removal default is the whole system;
 
 dt                      = 0.002 ; this is only for MD
 
