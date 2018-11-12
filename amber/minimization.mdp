@@ -2,7 +2,7 @@
 
 ; VARIOUS PREPROCESSING OPTIONS
 include                  = 
-define                   = -DPOSRES ; restraints
+define                   = -DPOSRES ; will trigger the inclusion of posre.itp into your topology, used for implementing position restraints.
 
 ; RUN CONTROL PARAMETERS
 integrator               = steep ; Steepest descent integrator
