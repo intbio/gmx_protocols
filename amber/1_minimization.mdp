@@ -61,7 +61,7 @@ periodic-molecules       = no
 ; a value of -1 means: use rlist
 verlet-buffer-tolerance  = 0.005
 ; nblist cut-off        
-rlist                    = 1.2
+rlist                    = 1.2 ; actually will be ignore and calculated from verlet-buffer-tolerance
 
 ; OPTIONS FOR ELECTROSTATICS AND VDW
 ; Method for doing electrostatics
