@@ -13,8 +13,25 @@ For AMBER ff the defaults are (see [../README.md](../README.md)):
 - Electrostatics: 8A real space cut-off, beyond cubic spline switching and the particle-mesh Ewald approximation in explicit solvent, with direct sum tolerances of 10−5 for NVT.
 - Integration step 2 fs with SHAKE performed on all bonds including hydrogen with the AMBER default tolerance of 10−5 Å for NVT.
 - Looks like in AMBER Berendsen thermostat and barostat are still used with coupling constant of 1 ps.
+- truncated octahedra unit cell is used for PBC
 ### Comments to the protocol
 - Clearly, we need to think of changing Brendsen thermostat to something else, and probably barostat too.
+
+### Excerpts from Gromacs manual
+- The default MD integrator in GROMACS is the so-called leap-frog algorithm [22] for the inte-
+gration of the equations of motion. When extremely accurate integration with temperature and/or
+pressure coupling is required, the velocity Verlet integrators are also present and may be preferable
+(see 3.4.5).
+- Because the velocity and position are both defined at the same time t the velocity Verlet integrator can be used for some methods, especially rigorously correct pressure control methods, that are not actually possible with leap-frog. The integration itself takes negligibly more time than leap-frog, but twice as many communication calls are currently required. In most cases, and especially for large systems where communication speed is important for parallelization and differences between thermodynamic ensembles vanish in the 1/N limit, and when only NVT ensembles are required, leap-frog will likely be the preferred integrator. For pressure control simulations where the fine details of the thermodynamics are important, only velocity Verlet allows the true ensemble to be calculated. In either case, simulation with double precision may be required to get fine details of thermodynamics correct.
+- Several other simulation packages uses multiple time stepping for bonds and/or the PME mesh forces. In GROMACS we have not implemented this (yet), since we use a different philosophy.
+- GROMACS can use the weak-coupling scheme of Berendsen [26], stochastic randomization through the Andersen thermostat [27], the extended ensemble Nosé-Hoover scheme [28, 29], or a velocity-rescaling scheme [30] to simulate constant temperature, with advantages of each of the schemes laid out below.
+- Just as for the Nosé-Hoover thermostat, you should realize that the Parrinello-Rahman time con- stant is not equivalent to the relaxation time used in the Berendsen pressure coupling algorithm. In most cases you will need to use a 4–5 times larger time constant with Parrinello-Rahman cou- pling.
+
+### Suggested protocol
+- Parameter description is here http://manual.gromacs.org/documentation/current/user-guide/mdp-options.html
+- leap-frog
+- velocity-rescale
+
 
 ## Equilibration parameters 
 For AMBER ff the typical protocol is (see [../README.md](../README.md)):
