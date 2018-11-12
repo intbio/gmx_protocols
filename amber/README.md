@@ -26,6 +26,7 @@ pressure coupling is required, the velocity Verlet integrators are also present 
 - Several other simulation packages uses multiple time stepping for bonds and/or the PME mesh forces. In GROMACS we have not implemented this (yet), since we use a different philosophy.
 - GROMACS can use the weak-coupling scheme of Berendsen [26], stochastic randomization through the Andersen thermostat [27], the extended ensemble Nosé-Hoover scheme [28, 29], or a velocity-rescaling scheme [30] to simulate constant temperature, with advantages of each of the schemes laid out below.
 - Just as for the Nosé-Hoover thermostat, you should realize that the Parrinello-Rahman time con- stant is not equivalent to the relaxation time used in the Berendsen pressure coupling algorithm. In most cases you will need to use a 4–5 times larger time constant with Parrinello-Rahman cou- pling.
+- For Coulomb interactions we advise against using a shifted potential and for use of a reaction field or a proper long-range method such as PME.
 
 ### Suggested protocol
 - Parameter description is here http://manual.gromacs.org/documentation/current/user-guide/mdp-options.html
