@@ -50,7 +50,7 @@ Protocol may look as an overkill.
 I'd probably go with the  modified JMB protocol:
 - 1000 steps of energy minimization with all protein, DNA and crystallographic waters fixed - to adjust ions and added waters.
 - 10 000 minimization steps with 100 kcal/mol/A2 restraints on protein heavy atoms.
-- Four rounds of 200 ps simulations with elastic constraints on C-alpha atoms of protein and N1, N9 atoms of DNA bases which are gradually relaxed as follows: 100->10->1->0.1 kcal/mol/A2.
+- Four rounds of 200 ps simulations with elastic constraints on C-alpha atoms of protein and N1, N9 atoms of DNA bases which are gradually relaxed as follows: 100->10->1->0.1 kcal/mol/A2. Due to kJ, we go with 500->50->5->0.5 kJ/mol/A2
 
 ## MDP-files
 
