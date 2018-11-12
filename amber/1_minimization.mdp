@@ -78,7 +78,7 @@ vdw-modifier             = None ; this matches Amber
 rvdw_switch              = 0.8
 rvdw                     = 0.8
 ; Apply long range dispersion corrections for Energy and Pressure
-DispCorr                 = Yes ; This is default in AMBER
+DispCorr                 = EnerPres ; This is default in AMBER, ??? AllEnerPres what is it?
 ; Extension of the potential lookup tables beyond the cut-off
 table-extension          = 1
 ; Separate tables between energy group pairs
