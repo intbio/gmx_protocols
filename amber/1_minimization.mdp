@@ -2,7 +2,9 @@
 
 ; VARIOUS PREPROCESSING OPTIONS
 include                  = 
-define                   = -DPOSRES ; will trigger the inclusion of posre.itp into your topology, used for implementing position restraints.
+define                   = -DPOSRES -DPOSRES_FC=500.0 ; will trigger the inclusion of posre.itp into your topology, used for implementing position restraints.
+; here we assume that in posres.itp file all force constants have been changed to POSRES_FC
+; see this link for details http://mdsquad.wikia.com/wiki/Change_position_restraint_force_constant_in_MDP
 
 ; RUN CONTROL PARAMETERS
 integrator               = steep ; Steepest descent integrator
