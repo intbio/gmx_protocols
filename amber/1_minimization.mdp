@@ -16,7 +16,7 @@ simulation-part          = 1 ; Part index is updated automatically on checkpoint
 comm-mode                = Linear ; mode for center of mass motion removal
 
 nstcomm                  = 100 ; number of steps for center of mass motion removal
-comm-grps                =  ; group(s) for center of mass motion removal default is the whole system
+comm-grps                =  System Protein ; group(s) for center of mass motion removal default is the whole system, We add Prtoein so it will not fly away.
 
 dt                      = 0.002 ; this is only for MD
 
@@ -125,7 +125,7 @@ gen-seed                 = -1
 tcoupl                   = v-rescale
 nsttcouple               = -1 ; the frequency of coupling the temperarure, -1 is automatic = nstlist for md integrator
 ; Groups to couple separately
-tc-grps                  = system ; NOTE: Group name "system" is defined if you are NOT using an index file.
+tc-grps                  = System ; NOTE: Group name "System" is defined if you are NOT using an index file. But better to generate a default index file anyway.
 ; Time constant (ps) and reference temperature (K)
 tau-t                    = 1 ; 1 ps as used in Amber paper, but we might need to research and use different for large scale dynamics!
 ref-t                    = 300
