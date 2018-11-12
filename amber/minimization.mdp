@@ -14,6 +14,8 @@ comm-mode                = Linear ; mode for center of mass motion removal
 nstcomm                  = 100 ; number of steps for center of mass motion removal
 comm-grps                =  ; group(s) for center of mass motion removal default is the whole system
 
+dt                      = 0.002 ; this is only for MD
+
 ; ENERGY MINIMIZATION OPTIONS
 ; Force tolerance and initial step-size
 emtol                    = 100.0
@@ -58,21 +60,21 @@ rlist                    = 1.2
 
 ; OPTIONS FOR ELECTROSTATICS AND VDW
 ; Method for doing electrostatics
-coulombtype              = Cut-off
-coulomb-modifier         = Potential-shift-Verlet
+coulombtype              = PME
+coulomb-modifier         = None ; change from default Potential-shift-Verlet because Amber does not use shift.
 rcoulomb-switch          = 0
-rcoulomb                 = 1.2
+rcoulomb                 = 0.8
 ; Relative dielectric constant for the medium and the reaction field
 epsilon-r                = 1
 epsilon-rf               = 0
 ; Method for doing Van der Waals
 vdwtype                  = Cut-off
-vdw-modifier             = Force-switch
+vdw-modifier             = None ; this matches Amber
 ; cut-off lengths       
-rvdw_switch              = 1.0
-rvdw                     = 1.2
+rvdw_switch              = 0.8
+rvdw                     = 0.8
 ; Apply long range dispersion corrections for Energy and Pressure
-DispCorr                 = No
+DispCorr                 = Yes ; This is default in AMBER
 ; Extension of the potential lookup tables beyond the cut-off
 table-extension          = 1
 ; Separate tables between energy group pairs
@@ -86,59 +88,56 @@ fourier-nz               = 0
 ; EWALD/PME/PPPM parameters
 pme-order                = 4
 ewald-rtol               = 1e-05
-ewald-rtol-lj            = 0.001
-lj-pme-comb-rule         = Geometric
 ewald-geometry           = 3d
 epsilon-surface          = 0
 
-; OPTIONS FOR WEAK COUPLING ALGORITHMS
-; Temperature coupling  
-tcoupl                   = No
-nsttcouple               = -1
-nh-chain-length          = 10
-print-nose-hoover-chain-variables = no
-; Groups to couple separately
-tc-grps                  = 
-; Time constant (ps) and reference temperature (K)
-tau-t                    = 
-ref-t                    = 
-; pressure coupling     
-pcoupl                   = No
-pcoupltype               = Isotropic
-nstpcouple               = -1
-; Time constant (ps), compressibility (1/bar) and reference P (bar)
-tau-p                    = 1
-compressibility          = 
-ref-p                    = 
-; Scaling of reference coordinates, No, All or COM
-refcoord-scaling         = No
+; OPTIONS FOR BONDS    
+constraints              = all-bonds ; the same as used in AMBER
+; Type of constraint algorithm
+constraint_algorithm     = LINCS ; this is better than SHAKE so we retain it
+; Do not constrain the start configuration
+continuation             = no
+; Highest order in the expansion of the constraint coupling matrix
+lincs-order              = 4
+; Number of iterations in the final step of LINCS. 1 is fine for
+; normal simulations, but use 2 to conserve energy in NVE runs.
+; For energy minimization with constraints it should be 4 to 8.
+lincs-iter               = 8 ; in MD we will set this to 1
+; Lincs will write a warning to the stderr if in one step a bond
+; rotates over more degrees than
+lincs-warnangle          = 30
+
+
+; Below is only relevant for MD
 
 ; GENERATE VELOCITIES FOR STARTUP RUN
 gen-vel                  = no
 gen-temp                 = 300
 gen-seed                 = -1
 
-; OPTIONS FOR BONDS    
-constraints              = h-bonds
-; Type of constraint algorithm
-constraint_algorithm     = LINCS
-; Do not constrain the start configuration
-continuation             = no
-; Use successive overrelaxation to reduce the number of shake iterations
-Shake-SOR                = no
-; Relative tolerance of shake
-shake-tol                = 0.0001
-; Highest order in the expansion of the constraint coupling matrix
-lincs-order              = 4
-; Number of iterations in the final step of LINCS. 1 is fine for
-; normal simulations, but use 2 to conserve energy in NVE runs.
-; For energy minimization with constraints it should be 4 to 8.
-lincs-iter               = 1
-; Lincs will write a warning to the stderr if in one step a bond
-; rotates over more degrees than
-lincs-warnangle          = 30
-; Convert harmonic bonds to morse potentials
-morse                    = no
+
+; OPTIONS FOR WEAK COUPLING ALGORITHMS
+; Temperature coupling  
+tcoupl                   = v-rescale
+nsttcouple               = -1 ; the frequency of coupling the temperarure, -1 is automatic = nstlist for md integrator
+; Groups to couple separately
+tc-grps                  = system ; NOTE: Group name "system" is defined if you are NOT using an index file.
+; Time constant (ps) and reference temperature (K)
+tau-t                    = 1 ; 1 ps as used in Amber paper, but we might need to research and use different for large scale dynamics!
+ref-t                    = 300
+; pressure coupling     
+pcoupl                   = Parrinello-Rahman
+pcoupltype               = Isotropic
+nstpcouple               = -1
+; Time constant (ps), compressibility (1/bar) and reference P (bar)
+tau-p                    = 1
+compressibility          = 4.5e-5 ; for water
+ref-p                    = 1 ; 1 bar
+; Scaling of reference coordinates, No, All or COM
+refcoord-scaling         = No ; this means positional restraints are not rescaled
+
+
+
 
 ; ENERGY GROUP EXCLUSIONS
 ; Pairs of energy groups for which all non-bonded interactions are excluded
