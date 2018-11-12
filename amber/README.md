@@ -44,7 +44,7 @@ For AMBER ff the typical protocol is (see [../README.md](../README.md)):
 - Three 100 ps simulations with temperature and pressure time constants of 500 fs were performed, with backbone restraints of 10 kcal mol−1 Å−2, 1 kcal mol−1 Å−2, and then 0.1 kcal mol−1 Å−2.
 - Finally, the system was simulated unrestrained with pressure and temperature time constants of 1 ps for 500 ps with a 2 fs time step, removing center-of-mass translation and rotation every picosecond.
 
-### Comments to the protocol
+### Suggested protocol
 Protocol may look as an overkill.
 I'd probably go with the  modified JMB protocol:
 - 1000 steps of energy minimization with all protein, DNA and crystallographic waters fixed - to adjust ions and added waters.
@@ -63,7 +63,3 @@ I'd probably go with the  modified JMB protocol:
 
 
 
-## Equilibraion protocol from JMB 2016 paper
-All  systems  were  initially  subjected  to  energy  minimization  and  initial  equilibration  via  the  following  protocol:  (i)  1000  steps  of  energy  minimization  with  all  protein,  DNA  and  crystallographic  waters  fixed,  (ii)  10  000  minimization  steps  without  atom  fixation,  (iii)  four  rounds  of  200  ps  simulations  with  elastic  constraints  on  C-alpha  atoms  of  protein  and  N1,  N9  atoms  of  DNA  bases  which  are  gradually  relaxed  as  follows:  300->150->30->0.9  kcal/mol/A2. 
-
-Here is NAMD file [min_equil.conf](https://github.com/intbio/MolModEdu/blob/master/MD/NAMD/nucl/nucleosome_CHARMM/simul/input/min_equil.conf)
