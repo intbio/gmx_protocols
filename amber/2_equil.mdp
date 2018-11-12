@@ -1,4 +1,4 @@
-;MDP-file for equilibraion: fist step
+;MDP-file for equilibraion: fist step 200 ps with 500 kJ/mol/A2 constraints on heavy atoms of protein.
 
 ; VARIOUS PREPROCESSING OPTIONS
 include                  = 
@@ -9,8 +9,8 @@ define                   = -DPOSRES -DPOSRES_FC=500.0 ; will trigger the inclusi
 ;to match AMBER we need 100 kcal/mol/A2, which is 418 kJ/mol/A2 - we set 500
 
 ; RUN CONTROL PARAMETERS
-integrator               = steep ; Steepest descent integrator
-nsteps                   = 10000 ; 10000 steps
+integrator               = md ; Steepest descent integrator
+nsteps                   = 100000 ; 10000 steps
 init-step                = 0 ; For exact run continuation or redoing part of a run
 simulation-part          = 1 ; Part index is updated automatically on checkpointing (keeps files separate)
 comm-mode                = Linear ; mode for center of mass motion removal
