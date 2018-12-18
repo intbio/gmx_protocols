@@ -32,7 +32,7 @@ nstvout                  = 0
 nstfout                  = 0
 ; Output frequency for energies to log file and energy file
 nstlog                   = 1000
-nstcalcenergy            = 100 ; why less???
+nstcalcenergy            = 100 ; why less -> looks like this is needed for thermostats/barostats
 nstenergy                = 1000
 
 ; Output frequency and precision for .xtc file
