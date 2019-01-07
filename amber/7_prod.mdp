@@ -1,8 +1,10 @@
 ;MDP-file production run: 10 000 ns.
+; this protocol does not generate velocities (gen-vel = no), so velocities should be provided to grompp, e.g. from .cpt file
 
 ; VARIOUS PREPROCESSING OPTIONS
 include                  = 
-define                   = ; will trigger the inclusion of posre.itp into your topology, used for implementing position restraints.
+define                   = ; NO RESTRAINTS DEFINED HERE
+; will trigger the inclusion of posre.itp into your topology, used for implementing position restraints.
 ; here we assume that in posres.itp file all force constants have been changed to POSRES_FC
 ; see this link for details http://mdsquad.wikia.com/wiki/Change_position_restraint_force_constant_in_MDP
 ;1000 kJ mol-1 nm-2 is the default constant
@@ -115,7 +117,7 @@ lincs-warnangle          = 30
 ; Below is only relevant for MD
 
 ; GENERATE VELOCITIES FOR STARTUP RUN
-gen-vel                  = yes
+gen-vel                  = no
 gen-temp                 = 300
 gen-seed                 = -1
 
