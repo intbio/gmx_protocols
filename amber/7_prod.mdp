@@ -1,5 +1,6 @@
 ;MDP-file production run: 10 000 ns.
-; this protocol does not generate velocities (gen-vel = no), so velocities should be provided to grompp, e.g. from .cpt file
+; this protocol now generates velocities this is useful for generating parallel runs with different random seeds
+; random seeds are selected randomly by grompp here
 
 ; VARIOUS PREPROCESSING OPTIONS
 include                  = 
@@ -117,7 +118,7 @@ lincs-warnangle          = 30
 ; Below is only relevant for MD
 
 ; GENERATE VELOCITIES FOR STARTUP RUN
-gen-vel                  = no
+gen-vel                  = yes
 gen-temp                 = 300
 gen-seed                 = -1
 
