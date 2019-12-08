@@ -96,7 +96,7 @@ ewald-geometry           = 3d
 epsilon-surface          = 0
 
 ; OPTIONS FOR BONDS    
-constraints              = all-bonds ; the same as used in AMBER
+constraints              = None ; the same as used in AMBER
 ; Type of constraint algorithm
 constraint_algorithm     = LINCS ; this is better than SHAKE so we retain it
 ; Do not constrain the start configuration
