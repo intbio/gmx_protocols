@@ -130,7 +130,7 @@ tc-grps                  = System ; NOTE: Group name "System" is defined if you 
 tau-t                    = 1 ; 1 ps as used in Amber paper, but we might need to research and use different for large scale dynamics!
 ref-t                    = 300
 ; pressure coupling     
-pcoupl                   = Parrinello-Rahman
+pcoupl                   = Berendsen
 pcoupltype               = Isotropic
 nstpcouple               = -1
 ; Time constant (ps), compressibility (1/bar) and reference P (bar)
