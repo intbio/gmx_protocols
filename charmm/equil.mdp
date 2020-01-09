@@ -80,7 +80,7 @@ vdw-modifier             = Potential-switch ; this is for CHARMM
 rvdw_switch              = 1.0
 rvdw                     = 1.2
 ; Apply long range dispersion corrections for Energy and Pressure
-DispCorr                 = None ; Looks like CHARMM does not use it
+DispCorr                 = No ; Looks like CHARMM does not use it
 ; Extension of the potential lookup tables beyond the cut-off
 table-extension          = 1
 ; Separate tables between energy group pairs
