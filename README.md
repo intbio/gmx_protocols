@@ -1,7 +1,7 @@
 # gmx_protocols
 Protocols for running MD simulations in Gromacs
 
-## Notes on simulation parameters
+## Notes on simulation parameters from original papers
 ### AMBER ff14SB paper
 https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4821407/pdf/nihms772276.pdf
 
@@ -21,6 +21,11 @@ The equations of motion were integrated with a 2 fs time step while SHAKE was us
 
 Pressure was regulated by a Parinello-Rahman barostat52 with a coupling time of 2.5 ps
 
+### CHARMM36m paper - Nature Methods 2016
+http://dx.doi.org/10.1038/nmeth.4067
+
+GROMACS version 4.6.31 was used. The lengths of bonds with hydrogen atoms were constrained using the LINCS algorithm. An integration time step of 2 fs was used. A cutoff of 9.5 Å was used for the Lennard-Jones interactions and short-range electrostatic interactions. Long-range electrostatic interactions were calculated by particle-mesh Ewald summation with a grid spacing of 1.2 Å and a fourth order interpolation. The velocity rescaling thermostat was used. 
+
 ## Notes on equilibration protocols
 ### AMBER ff14SB paper
 https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4821407/pdf/nihms772276.pdf
@@ -33,6 +38,11 @@ Except where otherwise indicated, equilibration was performed with a weak- coupl
 ### CHARMM36 paper
 https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3549273/pdf/nihms395902.pdf
 Each protein was solvated in a truncated octahedron simulation cell filled with TIP3P water, with nearest distance between images of 45 Å for all proteins except for lysozyme, for which the distance was 60 Å. Sodium and chloride ions were added as needed to yield a final salt concentrations of ~100 mM, with adjustments to ensure charge neutrality. For each protein, a 100-step SD energy minimization of the whole system was performed, followed by 200 ps of MD at a constant pressure of 1 bar and temperature of 300 K, in which harmonic positional restraints of 2.39 kcal/mol/Å2 were applied to each Cartesian component of each protein non-hydrogen atom using the minimized structure as a reference. Each protein was then simulated at a constant pressure of 1 bar and a temperature of 300 K for 200 ns. Pressure was regulated by a Parinello-Rahman barostat52 with a coupling time of 2.5 ps; otherwise all details were as described for Ac-(AAQAA)3-NH2 above.
+
+### CHARMM36m paper - Nature Methods 2016
+http://dx.doi.org/10.1038/nmeth.4067
+
+Equilibration was performed at 298 K for 1 ns using Berendsen pressure coupling followed by 5 ns of simulation in the NPT ensemble using the Parrinello−Rahman algorithm.  The first 30 ns of simulation were discarded as equilibration (based on radius of gyration and hydrogen bonding).
 
 
 ### Shaytan et al. JMB 2016
