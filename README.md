@@ -32,6 +32,11 @@ http://dx.doi.org/10.1038/nmeth.4067
 
 GROMACS version 4.6.31 was used. The lengths of bonds with hydrogen atoms were constrained using the LINCS algorithm. An integration time step of 2 fs was used. A cutoff of 9.5 Å was used for the Lennard-Jones interactions and short-range electrostatic interactions. Long-range electrostatic interactions were calculated by particle-mesh Ewald summation with a grid spacing of 1.2 Å and a fourth order interpolation. The velocity rescaling thermostat was used. 
 
+OR
+
+MD simulations were carried out using OpenMM39 in the NPT ensemble at 300 K and 1 atm. Temperature control is performed using the Andersen thermostat with a collision frequency of 1 ps-1, and pressure control performed based on a Monte Carlo barostat. Periodic boundary conditions were applied and Lennard-Jones interactions were truncated at 12 Å with a potential switching function from 10 to 12 Å. Electrostatic interactions were calculated using the particle mesh Ewald method with a real space cutoff of 12 A on an approximately 1 Å grid with a 4th-order spline. Covalent bonds to hydrogen atoms were constrained using the constant constraint matrix approximation. The integration time step equals 2 fs and coordinates were saved every 100 ps.
+
+
 ## Notes on equilibration protocols from original papers
 ### AMBER ff14SB paper
 https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4821407/pdf/nihms772276.pdf
