@@ -7,15 +7,16 @@ http://manual.gromacs.org/documentation/current/manual-2018.3.pdf
 
 ## Simulation parameters
 
-For AMBER ff the defaults are (see [../README.md](../README.md)):
-- vdW cut-off 8A
-- Contimuum correction to energy and pressure outside that cut-off
-- Electrostatics: 8A real space cut-off, beyond cubic spline switching and the particle-mesh Ewald approximation in explicit solvent, with direct sum tolerances of 10−5 for NVT.
-- Integration step 2 fs with SHAKE performed on all bonds including hydrogen with the AMBER default tolerance of 10−5 Å for NVT.
-- Looks like in AMBER Berendsen thermostat and barostat are still used with coupling constant of 1 ps.
-- truncated octahedra unit cell is used for PBC
+For CHARMM ff defaults vary (see [../README.md](../README.md)), but some consensus is:
+- vdW cut-off: smothed switching between 10 and 12.
+- Contimuum correction to energy and pressure outside cut-off - NOT USED
+- Electrostatics: PME with  12 A real space cut-off, 1 A grid spacing, 4th order interpolation.
+- Integration step 2 fs with LINCS or SHAKE only on X-H bonds.
+- Thermostat: velocity rescaling or andersen (collision freq 1 ps^-1) or Nose-Hoover or Langevin themostat (fric coef. 1 ps^-1)
+- Barostat: Parinello-Rahman (coupling time 2.5 ps) or Langevin piston or Monte Carlo barostat.
+
 ### Comments to the protocol
-- Clearly, we need to think of changing Brendsen thermostat to something else, and probably barostat too.
+
 
 ### Excerpts from Gromacs manual
 - The default MD integrator in GROMACS is the so-called leap-frog algorithm [22] for the inte-
@@ -35,28 +36,9 @@ pressure coupling is required, the velocity Verlet integrators are also present 
 
 
 ## Equilibration parameters 
-For AMBER ff the typical protocol is (see [../README.md](../README.md)):
+For CHARMM some typical protocol are decribed above (see [../README.md](../README.md)):
 
-- Berendsen thermostat and barostat targeted to 1 bar with isotropic position scaling.
-- With 100 kcal mol−1 Å−2 positional restraints on protein heavy atoms, structures are minimized for up to 10000 cycles.
-- Then heated at constant volume from 100 K to 300 K over 100 ps, followed by another 100 ps at 300 K.
-- The pressure was equilibrated for 100 ps and then 250 ps with time constants of 100 fs and then 500 fs on coupling of pressure and temperature to 1 bar and 300 K, and 100 kcal mol−1 Å−2 and then 10 kcal mol−1 Å−2 Cartesian positional restraints on protein heavy atoms.
-- The system was again minimized, with 10 kcal mol−1 Å−2 force constant Cartesian restraints on only the protein main chain N, Cα, and C for up to 10000 cycles. 
-- Three 100 ps simulations with temperature and pressure time constants of 500 fs were performed, with backbone restraints of 10 kcal mol−1 Å−2, 1 kcal mol−1 Å−2, and then 0.1 kcal mol−1 Å−2.
-- Finally, the system was simulated unrestrained with pressure and temperature time constants of 1 ps for 500 ps with a 2 fs time step, removing center-of-mass translation and rotation every picosecond.
-
-### Suggested protocol
-Protocol may look as an overkill.
-I'd probably go with the  modified JMB protocol:
-- 10 000 minimization steps with 500 kJ/mol/A2 restraints on protein heavy atoms.
-- Four rounds of 200 ps simulations with elastic constraints on heavy atoms which are gradually relaxed as follows: 100->10->1->0.1 kcal/mol/A2. Due to kJ, we go with 500->50->5->0.5 kJ/mol/A2
-- 200 p unrestrained
-
-## MDP-files
-
-- 1_minim.mdp
-- 2_equil.mdp
-- ...
+We'll go with the same cutom protocol we have implemented in amber example for setup consitensy.
 
 
 

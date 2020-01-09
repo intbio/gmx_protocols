@@ -60,43 +60,43 @@ periodic-molecules       = no
 ; a value of -1 means: use rlist
 verlet-buffer-tolerance  = 0.005
 ; nblist cut-off        
-rlist                    = 1.2 ; actually will be ignore and calculated from verlet-buffer-tolerance
+rlist                    = 1.4 ; actually will be ignore and calculated from verlet-buffer-tolerance
 
 ; OPTIONS FOR ELECTROSTATICS AND VDW
 ; Method for doing electrostatics
 coulombtype              = PME
 coulomb-modifier         = None ; change from default Potential-shift-Verlet because Amber does not use shift.
 rcoulomb-switch          = 0
-rcoulomb                 = 0.8
+rcoulomb                 = 1.2
 ; Relative dielectric constant for the medium and the reaction field
 epsilon-r                = 1
 epsilon-rf               = 0
 ; Method for doing Van der Waals
 vdwtype                  = Cut-off
-vdw-modifier             = None ; this matches Amber
+vdw-modifier             = Potential-switch ; this is for CHARMM
 ; cut-off lengths       
-rvdw_switch              = 0.8
-rvdw                     = 0.8
+rvdw_switch              = 1.0
+rvdw                     = 1.2
 ; Apply long range dispersion corrections for Energy and Pressure
-DispCorr                 = EnerPres ; This is default in AMBER, ??? AllEnerPres what is it?
+DispCorr                 = None ; Looks like CHARMM does not use it
 ; Extension of the potential lookup tables beyond the cut-off
 table-extension          = 1
 ; Separate tables between energy group pairs
 energygrp-table          = 
 ; Spacing for the PME/PPPM FFT grid
-fourierspacing           = 0.12
+fourierspacing           = 0.1 ; for CHARMM
 ; FFT grid size, when a value is 0 fourierspacing will be used
 fourier-nx               = 0
 fourier-ny               = 0
 fourier-nz               = 0
 ; EWALD/PME/PPPM parameters
 pme-order                = 4
-ewald-rtol               = 1e-05
+ewald-rtol               = 1e-05 ; left the same as in amber setup - think this is only for Ewald
 ewald-geometry           = 3d
 epsilon-surface          = 0
 
 ; OPTIONS FOR BONDS    
-constraints              = None ; the same as used in AMBER
+constraints              = None ; no for minimization, but will switch on for equil and production.
 ; Type of constraint algorithm
 constraint_algorithm     = LINCS ; this is better than SHAKE so we retain it
 ; Do not constrain the start configuration
