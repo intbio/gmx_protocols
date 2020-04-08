@@ -99,7 +99,7 @@ ewald-geometry           = 3d
 epsilon-surface          = 0
 
 ; OPTIONS FOR BONDS    
-constraints              = all-bonds ; the same as used in AMBER
+constraints              = h-bonds ; this is a tweak fro all-bonds to allow gromacs 2020 to calculate all non-bonded interactions on GPU
 ; Type of constraint algorithm
 constraint_algorithm     = LINCS ; this is better than SHAKE so we retain it
 ; Do not constrain the start configuration
