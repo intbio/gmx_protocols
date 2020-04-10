@@ -140,7 +140,7 @@ tau-p                    = 1
 compressibility          = 4.5e-5 ; for water
 ref-p                    = 1 ; 1 bar
 ; Scaling of reference coordinates, No, All or COM
-refcoord-scaling         = all ; The reference coordinates are scaled with the scaling matrix of the pressure coupling. 
+refcoord-scaling         = com ; The reference coordinates are scaled with the scaling matrix of the pressure coupling. 
 ; ??? check if com is better?
 
 
