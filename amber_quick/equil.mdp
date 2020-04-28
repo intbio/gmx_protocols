@@ -1,6 +1,6 @@
 ;MDP-file for generic equilibraion:  20 ps with constraints on heavy atoms should be set via the following line.
 ;By uncommenting it with the correct value or by adding it from a script.
-;define                   = -DPOSRES  ; will trigger the inclusion of posre.itp into your topology, used for implementing position restraints.
+;define                   = -DCUSTOMPOSRES -DPOSRES  ; will trigger the inclusion of posre.itp into your topology, used for implementing position restraints.
 
 
 ; VARIOUS PREPROCESSING OPTIONS

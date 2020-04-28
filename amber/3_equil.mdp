@@ -2,7 +2,7 @@
 
 ; VARIOUS PREPROCESSING OPTIONS
 include                  = 
-define                   = -DPOSRES -DPOSRES_FC=50.0 ; will trigger the inclusion of posre.itp into your topology, used for implementing position restraints.
+define                   = -DCUSTOMPOSRES -DPOSRES -DPOSRES_FC=50.0 ; will trigger the inclusion of posre.itp into your topology, used for implementing position restraints.
 ; here we assume that in posres.itp file all force constants have been changed to POSRES_FC
 ; see this link for details http://mdsquad.wikia.com/wiki/Change_position_restraint_force_constant_in_MDP
 ;1000 kJ mol-1 nm-2 is the default constant
